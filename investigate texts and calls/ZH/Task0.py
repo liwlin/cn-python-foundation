@@ -17,6 +17,21 @@ with open('calls.csv', 'r') as f:
 短信记录的第一条记录是什么？通话记录最后一条记录是什么？
 输出信息:
 "First record of texts, <incoming number> texts <answering number> at time <time>"
+
 "Last record of calls, <incoming number> calls <answering number> at time <time>, lasting <during> seconds"
 """
 
+print("First record of texts, {} texts {} at time {}".format(
+    texts[0][0], 
+    texts[0][1],
+    texts[0][2]
+   
+))
+
+print("Last record of calls, {} calls {} at time {}, lasting {} seconds".format(
+    calls[-1][0],
+    calls[-1][1],
+    calls[-1][2],
+    calls[-1][3]
+   
+))

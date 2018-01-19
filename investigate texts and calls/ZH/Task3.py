@@ -39,3 +39,11 @@ with open('calls.csv', 'r') as f:
 to other fixed lines in Bangalore."
 注意：百分比应包含2位小数。
 """
+
+bangalore_calls ={}
+for i in calls:
+    #print(i[0][:5])
+    if i[0][0:5] == "(080)":
+        bangalore_calls[i[0]] =i[1]
+        print(bangalore_calls)
+       
