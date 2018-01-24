@@ -40,10 +40,35 @@ to other fixed lines in Bangalore."
 注意：百分比应包含2位小数。
 """
 
-bangalore_calls ={}
+#第一部分：
+code_list = []
+for call in calls:
+    if call[0][0:5] == "(080)":
+        if call[1][0] == "(" and call[1][0:(call[1].index(")")+1)] not in code_list:#判断是否含有固话区号（），并切片括号里的区号
+            code_list.append(call[1][1:(call[1].index(")"))])
+        elif call[1][0:4] not in code_list and " " in call[1]:  #判断是否手机号码
+            code_list.append(call[1][0:4])
+        elif call[1][0:3] == "140" and call[1][0:3] not in code_list:
+            code_list.append(call[1][0:3])
+
+code_list = sorted(code_list) #排序
+#print(len(code_list))
+print("The numbers called by people in Bangalore have codes:")
+for code in code_list:
+    print(code)
+
+
+
+#第二部分：
+bangalore_calls_answers = 0
+bangalore_calls = 0
+
 for i in calls:
     #print(i[0][:5])
     if i[0][0:5] == "(080)":
-        bangalore_calls[i[0]] =i[1]
-        print(bangalore_calls)
-       
+        bangalore_calls +=1
+        if i[1][0:5] =="(080)":
+            bangalore_calls_answers +=1 
+
+percentage =round(bangalore_calls_answers / bangalore_calls,4) *100
+print("{}% percent of calls from fixed lines in Bangalore are calls,to other fixed lines in Bangalore.".format(percentage))
